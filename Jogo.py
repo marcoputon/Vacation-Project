@@ -35,10 +35,10 @@ def main():
 	lt.append(menuItem(100, 100, 200, 50, "Tutorial", 22, (255, 255, 255)))
 	lt.append(menuItem(100, 100, 200, 50, "Configurar", 22, (255, 255, 255)))
 	lt.append(menuItem(100, 100, 200, 50, "Sair", 22, (255, 255, 255)))
-	
 	m = menu(lt, (30, 100), 20)
 	op = 0
-	# Menu loop
+	
+	# Loop do menu
 	while 1:
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -64,9 +64,9 @@ def main():
 					if m.selected == 1:
 						op = 1
 					elif m.selected == 2:
-						pass#op = 2
+						op = 2
 					elif m.selected == 3:
-						pass#op = 3
+						op = 3
 					
 			if event.type == pygame.KEYUP:
 				pass
@@ -76,7 +76,7 @@ def main():
 		screen.blit(background, (0, 0))
 		pygame.display.flip()
 		
-		
+		#	Loop do jogo
 		while op == 1:
 			for event in pygame.event.get():
 				if event.type == QUIT:
@@ -99,11 +99,52 @@ def main():
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
 		
+		#	Loop do tutorial
 		while op == 2:
-			pass
+			for event in pygame.event.get():
+				if event.type == QUIT:
+					return
+					
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_ESCAPE:
+						op = 0
+						break
+					if event.key == pygame.K_DOWN:
+						pass
+					if event.key == pygame.K_UP:
+						pass
+					if event.key == pygame.K_RETURN:
+						pass				
+				if event.type == pygame.KEYUP:
+					pass
 		
+			background.fill((0, 0, 200))
+			screen.blit(background, (0, 0))
+			pygame.display.flip()
+		
+		
+		#	Loop de configuracoes
 		while op == 3:
-			pass
+			for event in pygame.event.get():
+				if event.type == QUIT:
+					return
+					
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_ESCAPE:
+						op = 0
+						break
+					if event.key == pygame.K_DOWN:
+						pass
+					if event.key == pygame.K_UP:
+						pass
+					if event.key == pygame.K_RETURN:
+						pass				
+				if event.type == pygame.KEYUP:
+					pass
+		
+			background.fill((150, 0, 0))
+			screen.blit(background, (0, 0))
+			pygame.display.flip()
 
 
 if __name__ == '__main__': main()
