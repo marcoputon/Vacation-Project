@@ -41,3 +41,8 @@ class menu():
 			
 		r = self.itens[self.selected - 1]
 		pygame.draw.rect(surface, (255, 255, 255), (r.x-5, r.y-5, r.w+10, r.h+10), 5)
+		
+		
+		
+		
+		
