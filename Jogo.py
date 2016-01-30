@@ -8,6 +8,8 @@ import time
 
 #	Variaveis globais
 vol = 50
+LARGURA = 1200
+ALTURA = 700
 
 #	Classes para o menu de configuracoes. fiquei com preguica de fazer 
 #	de um jeito nao gambiarrento. 
@@ -49,12 +51,16 @@ class configMenu():
 
 
 def main():
+	def desenhaPersonagens():
+		for i in perList:
+			i.draw(background)
+			
 	global vol
 	direction = {"up":False, "down":False, "left":False, "right":False}
 	
 	# Initialise screen
 	pygame.init()
-	screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+	screen = pygame.display.set_mode((LARGURA, ALTURA))
 	pygame.display.set_caption('Game')
 
 	# Fill background
@@ -91,7 +97,8 @@ def main():
 	#cop = 0
 	
 	#	Mapa
-	mapa = Mapa(100, 200, 50, 0, 0)
+	bgImage = pygame.image.load("_Imagens/bg.png")
+	mapa = Mapa(int(LARGURA / 50), int(ALTURA / 50), 50, 0, 0, bgImage)
 	
 	#	Personagem
 	perList = []
@@ -147,10 +154,16 @@ def main():
 					if event.key == pygame.K_ESCAPE:
 						op = 0
 						break
-					if event.key == pygame.K_DOWN:
-						pass
+						
 					if event.key == pygame.K_UP:
 						pass
+					if event.key == pygame.K_DOWN:
+						pass
+					if event.key == pygame.K_LEFT:
+						pass
+					if event.key == pygame.K_RIGHT:
+						pass
+					
 					if event.key == pygame.K_RETURN:
 						pass				
 				if event.type == pygame.KEYUP:
@@ -158,10 +171,7 @@ def main():
 		
 			background.fill((0, 150, 0))
 			mapa.draw(background)
-			
-			for i in perList:
-				i.draw(background)
-			
+			#desenhaPersonagens()
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
 		
