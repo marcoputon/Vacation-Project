@@ -2,6 +2,7 @@
 import pygame
 from pygame.locals import *
 
+
 class menuItem():
 	def __init__(self, x, y, w, h, text, size, color):
 		self.t = text

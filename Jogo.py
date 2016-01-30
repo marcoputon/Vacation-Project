@@ -3,11 +3,14 @@
 import pygame
 from Classes import *
 from pygame.locals import *
+import time
 
 
 #	Variaveis globais
 vol = 50
 
+#	Classes para o menu de configuracoes. fiquei com preguica de fazer 
+#	de um jeito nao gambiarrento. 
 class configMenuItem(menuItem):
 	def __init__(self, x, y, w, h, text, size, color, value):
 		menuItem.__init__(self, x, y, w, h, text, size, color)
@@ -87,6 +90,14 @@ def main():
 	cm = configMenu(lt, (30, 100), 10)
 	#cop = 0
 	
+	#	Mapa
+	mapa = Mapa(100, 200, 50, 0, 0)
+	
+	#	Personagem
+	perList = []
+	perList.append(Personagem(0, 0, 80, 100, "kajhd"))
+	perList.append(Personagem(200, 300, 80, 100, "kajhd"))
+	perList.append(Personagem(20, 200, 180, 50, "kajhd"))
 	
 	#	Loop do menu
 	while 1:
@@ -146,6 +157,11 @@ def main():
 					pass
 		
 			background.fill((0, 150, 0))
+			mapa.draw(background)
+			
+			for i in perList:
+				i.draw(background)
+			
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
 		
@@ -197,10 +213,12 @@ def main():
 					if event.key == pygame.K_LEFT:
 						if cm.selected == 1:
 							v = -1
+							time.sleep(0.09)
 					
 					if event.key == pygame.K_RIGHT:
 						if cm.selected == 1:
 							v = 1
+							time.sleep(0.09)
 								
 				if event.type == pygame.KEYUP:
 					if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -219,5 +237,5 @@ def main():
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
 
-
+#	Chamada da main
 if __name__ == '__main__': main()
