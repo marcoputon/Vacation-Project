@@ -10,6 +10,8 @@ import time
 vol = 50
 LARGURA = 1200
 ALTURA = 700
+#	336 celulas na matriz
+
 
 #	Classes para o menu de configuracoes. fiquei com preguica de fazer 
 #	de um jeito nao gambiarrento. 
@@ -54,7 +56,19 @@ def main():
 	def desenhaPersonagens():
 		for i in perList:
 			i.draw(background)
-			
+	def gravidade():
+		for i in perList:
+			i.update(0, 0)
+		for i in perList:
+			for j in mapa.matriz:
+				for k in j:
+					print(str(type(i)), str(type(k)), "pos i: " + str(i.x), str(i.y), str(i.w), str(i.h) + "pos k: " + str(k.x), str(k.y), str(k.w), str(k.h))
+					if i.colide(k):
+						if i.directio[1] > 0:
+							i.direction[1] = 0
+							i.update(0, -1)
+							i.acel = 1
+		
 	global vol
 	direction = {"up":False, "down":False, "left":False, "right":False}
 	
@@ -103,8 +117,6 @@ def main():
 	#	Personagem
 	perList = []
 	perList.append(Personagem(0, 0, 80, 100, "kajhd"))
-	perList.append(Personagem(200, 300, 80, 100, "kajhd"))
-	perList.append(Personagem(20, 200, 180, 50, "kajhd"))
 	
 	#	Loop do menu
 	while 1:
@@ -171,10 +183,10 @@ def main():
 		
 			background.fill((0, 150, 0))
 			mapa.draw(background)
-			#desenhaPersonagens()
+			gravidade()
+			desenhaPersonagens()
 			screen.blit(background, (0, 0))
 			pygame.display.flip()
-		
 		#	Loop do tutorial
 		while op == 2:
 			for event in pygame.event.get():

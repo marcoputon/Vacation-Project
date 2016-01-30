@@ -7,5 +7,5 @@ class player(Personagem):
 	def __init__(self, x, y, w, h, img):
 		Personagem.__init__(self, x, y, w, h, img)
 		
-	def update(self):
+	def update(self, colidiveis):
 		pass

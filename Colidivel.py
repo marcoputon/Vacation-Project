@@ -11,12 +11,12 @@ class Colidivel():
 		self.h = h
 		
 	def colide(self, c):
-		try:
-			eu = Rect(self.x, self.y, self.w, self.h)
-			ele = Rect(c.x, c.y, c.w, c.h)
-			if eu.colliderect(ele):
-				print("Colidiu")
-			else:
-				print("Nao colidiu")
-		except:
-			print("A funcao 'colide' da classe 'colidivel' nao funcionou")
+		eu = Rect(self.x, self.y, self.w, self.h)
+		ele = Rect(c.x, c.y, c.w, c.h)
+		if eu.colliderect(ele):
+			print("Colidiu")
+		else:
+			print("Nao colidiu")
+
+	def draw(self, surface):
+		pass

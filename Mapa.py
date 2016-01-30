@@ -1,6 +1,8 @@
 #!/usr/bin/python
 import pygame
 from pygame.locals import *
+from Colidivel import *
+from Bloco import *
 
 class Mapa():
 	def __init__(self, m, n, blockSize, x, y, bg):
@@ -12,7 +14,7 @@ class Mapa():
 		linha = []
 		for i in range(n):
 			for j in range(m):
-				linha.append(0)
+				linha.append(Colidivel(-100, -100, 50, 50))
 			self.matriz.append(linha)
 			linha = []
 		
@@ -24,8 +26,10 @@ class Mapa():
 	
 	def pintaLinha(self, l, v):
 		nl = []
+		t = 0
 		for i in range(len(self.matriz[l])):
-			nl.append(pygame.image.load("_Imagens/" + v))
+			nl.append(Bloco(t * 50, l * 50, 50, pygame.image.load("_Imagens/" + v)))
+			t += 1
 		self.matriz[l] = nl
 	
 	def pintaColuna(self, c, v):
@@ -46,10 +50,4 @@ class Mapa():
 		self.pintaLinha(len(self.matriz)-1, "terra.jpg")
 		for i in self.matriz:
 			for j in i:
-				try:
-					surface.blit(j, (x, y))
-					x += bs
-				except:
-					pass
-			x = self.pos[0]
-			y += bs
+				j.draw(surface)

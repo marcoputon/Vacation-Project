@@ -9,9 +9,10 @@ class Bloco(Colidivel):
 		Colidivel.__init__(self, x, y, size, size)
 		self.img = img
 		self.tipo = 0
+		self.size = size
 
 	def draw(self, surface):
-		pygame.draw.rect(surface, (255, 100, 0), (self.x, self.y, self.size, self.size))
+		surface.blit(self.img, (self.x, self.y))
 		
 	def update(self, x, y):
 		self.x = x
