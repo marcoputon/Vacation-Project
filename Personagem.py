@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 from Colidivel import *
 
-G = 2
+G = 1
 MAXa = 25
 timer = 2
 
@@ -17,23 +17,17 @@ class Personagem(Colidivel):
 
 	def draw(self, surface):
 		pygame.draw.rect(surface, (255, 100, 0), (self.x, self.y, self.w, self.h))
+		print(self.direction)
 		
 	def update(self, x, y):
 		#	Seta a direcao que o personagem esta se movimentando
-		if x > 0:
-			self.direction[0] = 1
-		elif x == 0:
-			self.direction[0] = 0
-		else:
-			self.direction[0] = -1
-			
-		if (y + self.acel) > 0:
+		if y + self.acel > 0:
 			self.direction[1] = 1
-		elif (y + self.acel) == 0:
+		elif y + self.acel == 0:
 			self.direction[1] = 0
 		else:
 			self.direction[1] = -1
-		
+			
 		self.x += x
 		self.y += y + self.acel
 		self.t += 1

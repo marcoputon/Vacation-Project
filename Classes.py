@@ -9,3 +9,4 @@ from Menu import *
 from Mapa import *
 from Colidivel import *
 from Personagem import *
+from Player import *

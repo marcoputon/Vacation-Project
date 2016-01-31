@@ -34,9 +34,11 @@ class Mapa():
 	
 	def pintaColuna(self, c, v):
 		nc = []
+		t = 0
 		for i in range(len(self.matriz)):
-			self.matriz[i][c] = pygame.image.load("_Imagens/" + v)
-				
+			self.matriz[i][c] = Bloco(c * 50, t * 50, 50, pygame.image.load("_Imagens/" + v))
+			t += 1
+			
 	def pinta(self, l, c, v):
 		self.matriz[l][c] = pygame.image.load("_Imagens/" + v)
 	
@@ -48,6 +50,7 @@ class Mapa():
 
 		surface.blit(self.bg, (0, surface.get_size()[1] - self.bg.get_size()[1]))
 		self.pintaLinha(len(self.matriz)-1, "terra.jpg")
+		self.pintaColuna(0, "terra.jpg")
 		for i in self.matriz:
 			for j in i:
 				j.draw(surface)

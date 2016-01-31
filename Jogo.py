@@ -62,12 +62,16 @@ def main():
 		for i in perList:
 			for j in mapa.matriz:
 				for k in j:
-					print(str(type(i)), str(type(k)), "pos i: " + str(i.x), str(i.y), str(i.w), str(i.h) + "pos k: " + str(k.x), str(k.y), str(k.w), str(k.h))
 					if i.colide(k):
-						if i.directio[1] > 0:
+						if i.direction[1] > 0:
+							i.update(0, -3)
 							i.direction[1] = 0
-							i.update(0, -1)
+							i.setPos(i.x, k.y - i.h)
 							i.acel = 1
+							
+						if i.direction[0] < 0:
+							i.direction[0] = 0
+							i.setPos(k.x + 50, i.y)
 		
 	global vol
 	direction = {"up":False, "down":False, "left":False, "right":False}
@@ -116,7 +120,7 @@ def main():
 	
 	#	Personagem
 	perList = []
-	perList.append(Personagem(0, 0, 80, 100, "kajhd"))
+	perList.append(Player(200, 0, 80, 100, "kajhd"))
 	
 	#	Loop do menu
 	while 1:
@@ -172,15 +176,28 @@ def main():
 					if event.key == pygame.K_DOWN:
 						pass
 					if event.key == pygame.K_LEFT:
-						pass
+						direction['left'] = True
 					if event.key == pygame.K_RIGHT:
-						pass
+						direction['right'] = True
 					
 					if event.key == pygame.K_RETURN:
 						pass				
+						
 				if event.type == pygame.KEYUP:
-					pass
+					if event.key == pygame.K_LEFT:
+						direction['left'] = False
+					if event.key == pygame.K_RIGHT:
+						direction['right'] = False
 		
+			
+			#	Update:
+			if direction['left']:
+				perList[0].update(-10, 0)
+				perList[0].direction[0] = -1
+			if direction['right']:
+				perList[0].update(10, 0)
+				perList[0].direction[0] = 1
+			
 			background.fill((0, 150, 0))
 			mapa.draw(background)
 			gravidade()
