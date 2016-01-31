@@ -56,22 +56,17 @@ def main():
 	def desenhaPersonagens():
 		for i in perList:
 			i.draw(background)
+	
 	def gravidade():
 		for i in perList:
-			i.update(0, 0)
+			i.update(0, 1)
+			
+	def update():
 		for i in perList:
 			for j in mapa.matriz:
 				for k in j:
-					if i.colide(k):
-						if i.direction[1] > 0:
-							i.update(0, -3)
-							i.direction[1] = 0
-							i.setPos(i.x, k.y - i.h)
-							i.acel = 1
-							
-						if i.direction[0] < 0:
-							i.direction[0] = 0
-							i.setPos(k.x + 50, i.y)
+					pass
+				
 		
 	global vol
 	direction = {"up":False, "down":False, "left":False, "right":False}
@@ -193,14 +188,14 @@ def main():
 			#	Update:
 			if direction['left']:
 				perList[0].update(-10, 0)
-				perList[0].direction[0] = -1
 			if direction['right']:
 				perList[0].update(10, 0)
-				perList[0].direction[0] = 1
 			
 			background.fill((0, 150, 0))
 			mapa.draw(background)
+			
 			gravidade()
+			
 			desenhaPersonagens()
 			screen.blit(background, (0, 0))
 			pygame.display.flip()

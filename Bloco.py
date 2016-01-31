@@ -13,7 +13,3 @@ class Bloco(Colidivel):
 
 	def draw(self, surface):
 		surface.blit(self.img, (self.x, self.y))
-		
-	def update(self, x, y):
-		self.x = x
-		self.y = y
