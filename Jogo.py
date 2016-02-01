@@ -59,13 +59,15 @@ def main():
 	
 	def gravidade():
 		for i in perList:
-			i.update(0, 1)
+			if not (i.y + i.h + 50 > ALTURA):
+				i.update(direction, mapa.getBlocos())
 			
 	def update():
 		for i in perList:
 			for j in mapa.matriz:
 				for k in j:
-					pass
+					if i.colide(k):
+						pass
 				
 		
 	global vol
@@ -167,9 +169,9 @@ def main():
 						break
 						
 					if event.key == pygame.K_UP:
-						pass
+						direction['up'] = True
 					if event.key == pygame.K_DOWN:
-						pass
+						direction['down'] = True
 					if event.key == pygame.K_LEFT:
 						direction['left'] = True
 					if event.key == pygame.K_RIGHT:
@@ -183,14 +185,16 @@ def main():
 						direction['left'] = False
 					if event.key == pygame.K_RIGHT:
 						direction['right'] = False
+					if event.key == pygame.K_UP:
+						direction['up'] = False
+					if event.key == pygame.K_DOWN:
+						direction['down'] = False
 		
 			
 			#	Update:
-			if direction['left']:
-				perList[0].update(-10, 0)
-			if direction['right']:
-				perList[0].update(10, 0)
 			
+			perList[0].update(direction, mapa.getBlocos())
+						
 			background.fill((0, 150, 0))
 			mapa.draw(background)
 			

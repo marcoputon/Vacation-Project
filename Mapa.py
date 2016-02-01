@@ -54,3 +54,9 @@ class Mapa():
 		for i in self.matriz:
 			for j in i:
 				j.draw(surface)
+	def getBlocos(self):
+		l = []
+		for i in self.matriz:
+			for j in i:
+				l.append(j)
+		return l

@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 from Colidivel import *
 
-MAXa = 25
+MAXa = 24
 timer = 2
 
 class Personagem(Colidivel):
