@@ -15,6 +15,7 @@ class Colidivel():
 		self.y = y
 		self.w = w
 		self.h = h
+		self.speed = 0
 		self.xvel = 0
 		self.yvel = 0
 		self.onGround = False
@@ -46,24 +47,22 @@ class Colidivel():
 					
 	
 	def update(self, direction, platforms):
-		
-		
 		if direction['up']:
 			# only jump if on the ground
 			if self.onGround:
-				self.yvel -= 10
+				self.yvel -= 15
 		if direction['down']:
 			pass
 		if direction['left']:
-			self.xvel = -8
+			self.xvel = -self.speed
 		if direction['right']:
-			self.xvel = 8
+			self.xvel = self.speed
 		
 		if not(direction['left'] or direction['right']):
 			self.xvel = 0
 		
 		if not self.onGround:
-			self.yvel += 0.3
+			self.yvel += 1.0
 			if self.yvel > 100:
 				self.yvel = 100
 		

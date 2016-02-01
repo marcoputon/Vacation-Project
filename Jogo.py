@@ -8,13 +8,12 @@ import time
 
 #	Variaveis globais
 vol = 50
-LARGURA = 1200
-ALTURA = 700
-#	336 celulas na matriz
+LARGURA = 1200	#	336 celulas
+ALTURA = 700	#
 
 
 #	Classes para o menu de configuracoes. fiquei com preguica de fazer 
-#	de um jeito nao gambiarrento. 
+#	de um jeito nao gambiarrento.
 class configMenuItem(menuItem):
 	def __init__(self, x, y, w, h, text, size, color, value):
 		menuItem.__init__(self, x, y, w, h, text, size, color)
@@ -59,15 +58,7 @@ def main():
 	
 	def gravidade():
 		for i in perList:
-			if not (i.y + i.h + 50 > ALTURA):
-				i.update(direction, mapa.getBlocos())
-			
-	def update():
-		for i in perList:
-			for j in mapa.matriz:
-				for k in j:
-					if i.colide(k):
-						pass
+			i.update(direction, mapa.getBlocos())
 				
 		
 	global vol
@@ -76,8 +67,10 @@ def main():
 	# Initialise screen
 	pygame.init()
 	screen = pygame.display.set_mode((LARGURA, ALTURA))
-	pygame.display.set_caption('Game')
-
+	pygame.display.set_caption('A fucking amazing game')
+	
+	timer = pygame.time.Clock()
+	
 	# Fill background
 	background = pygame.Surface(screen.get_size())
 	background = background.convert()
@@ -109,7 +102,6 @@ def main():
 	lt = []
 	lt.append(configMenuItem(100, 100, 200, 50, "Volume", 22, (255, 255, 255), ": " + str(vol)))
 	cm = configMenu(lt, (30, 100), 10)
-	#cop = 0
 	
 	#	Mapa
 	bgImage = pygame.image.load("_Imagens/bg.png")
@@ -117,10 +109,12 @@ def main():
 	
 	#	Personagem
 	perList = []
-	perList.append(Player(200, 0, 80, 100, "kajhd"))
+	perList.append(Player(LARGURA/2 - 50, ALTURA/2 - 40, 80, 100, "kajhd"))
+	perList[0].speed = 12
 	
 	#	Loop do menu
 	while 1:
+		timer.tick(60)
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				return
@@ -198,7 +192,7 @@ def main():
 			background.fill((0, 150, 0))
 			mapa.draw(background)
 			
-			gravidade()
+			#gravidade()
 			
 			desenhaPersonagens()
 			screen.blit(background, (0, 0))

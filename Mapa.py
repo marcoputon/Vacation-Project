@@ -51,9 +51,11 @@ class Mapa():
 		surface.blit(self.bg, (0, surface.get_size()[1] - self.bg.get_size()[1]))
 		self.pintaLinha(len(self.matriz)-1, "terra.jpg")
 		self.pintaColuna(0, "terra.jpg")
+		self.pintaColuna(len(self.matriz[0])-1, "terra.jpg")
 		for i in self.matriz:
 			for j in i:
 				j.draw(surface)
+				
 	def getBlocos(self):
 		l = []
 		for i in self.matriz:
