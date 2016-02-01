@@ -3,8 +3,10 @@ import pygame
 from pygame.locals import *
 
 '''
-Detalhe importante:	A funcao update foi baseada no codigo encontrado 
-em http://stackoverflow.com/questions/14354171/add-scrolling-to-a-platformer-in-pygame
+	A funcao update foi baseada no codigo encontrado no link:
+		http://stackoverflow.com/questions/14354171/add-scrolling-to-a-platformer-in-pygame
+	que eu encontrei no video:
+		https://www.youtube.com/watch?v=bxibfL4TjWo&list=PL2K8-kPw3uPOTpfk-LJM-yvzSQB88hFYf
 '''
 
 class Colidivel():
@@ -25,6 +27,8 @@ class Colidivel():
 	def collide(self, xvel, yvel, platforms):
 		for p in platforms:
 			if self.colide(p):
+				#	Aqui acontece umas magias negras das trevas e do ocultismo iluminati
+				
 				if xvel > 0:
 					#self.rect.right = p.rect.left
 					self.x += p.x - (self.x + self.w)
