@@ -20,7 +20,6 @@ class Player(Entity):
 
 	def update(self, up, down, left, right, running, platforms):
 		if up:
-			# only jump if on the ground
 			if self.onGround: self.yvel -= 15
 		elif not self.onGround and self.yvel < 0:
 			self.yvel += 0.6
