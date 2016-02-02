@@ -8,8 +8,11 @@ from ExitBlock import *
 from Platform import *
 from InvisibleStone import *
 
-WIN_WIDTH = 1216
-WIN_HEIGHT = 640
+pygame.display.init()
+window = pygame.display.Info()
+
+WIN_WIDTH = int(window.current_w/32)*32
+WIN_HEIGHT = int(window.current_h/32)*32 - 64
 HALF_WIDTH = int(WIN_WIDTH / 2)
 HALF_HEIGHT = int(WIN_HEIGHT / 2)
 
