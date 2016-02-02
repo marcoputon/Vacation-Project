@@ -49,10 +49,12 @@ class Player(Entity):
 			if pygame.sprite.collide_rect(self, p):
 				if isinstance(p, ExitBlock):
 					pygame.event.post(pygame.event.Event(QUIT))
-					print("Voce achou a saida!")
+					print("Voce achou a saida!\n")
 				
 				if isinstance(p, InvisibleStone):
 					p.colidindo = True
+					if self.rect.y + self.rect.h-1 == p.rect.y:
+						p.colidindo = False
 					continue
 				
 				if xvel > 0:

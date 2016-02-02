@@ -55,12 +55,12 @@ def main():
 		"P   PPPPPPPPPPP                                    FFFFFFFFF   P",
 		"P                                                   FFFFFFF    P",
 		"P                 PPPPPPPPPPP                          M       P",
-		"P         IIII                                         M       P",
-		"P         IIII                                         M       E",
-		"P         IIII                                         M       E",
-		"PGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGP",
-		"PTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTP",
-		"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",]
+		"P       IIIIII                                         M       P",
+		"P       IIIIII                                         M       P",
+		"P       IIIIII                                         M       P",
+		"PGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG P",
+		"PTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT P",
+		"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPEP",]
 	# build the level
 	for row in level:
 		for col in row:
