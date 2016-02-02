@@ -39,15 +39,10 @@ class Player(Entity):
 		if not(left or right):
 			self.xvel = 0
 		
-		# increment in x direction
 		self.rect.left += self.xvel
-		# do x-axis collisions
 		self.collide(self.xvel, 0, platforms)
-		# increment in y direction
 		self.rect.top += self.yvel
-		# assuming we're in the air
-		self.onGround = False;
-		# do y-axis collisions
+		self.onGround = False
 		self.collide(0, self.yvel, platforms)
 
 	def collide(self, xvel, yvel, platforms):
