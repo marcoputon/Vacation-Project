@@ -20,3 +20,5 @@ if isinstance(b, Platform):
 	
 if isinstance(b, ExitBlock):
 	print("4")
+
+#	teste :D
