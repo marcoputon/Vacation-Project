@@ -1,24 +1,36 @@
 #! /usr/bin/python
 
-import pygame
-from pygame import *
-from Platform import *
-from ExitBlock import *
 
 
-a = Platform(0, 0, "G")
-b = ExitBlock(19, 8)
 
-if isinstance(a, Platform):
-	print("1")
-	
-if isinstance(a, ExitBlock):
-	print("2")
+def loadLevels(arquivo):
+	levels = []
+	level = []
+	arquivo = open(arquivo, "r")
+	fases = arquivo.readlines()
+	f = False
+	nome = ""
+	for i in fases:
+		if "nome" in i:
+			print(i[6:len(i)-1])
+			nome = i[6:len(i)-1]
+			f = True
+			continue
+		
+		if	f:
+			i = i[0:len(i)-1]
+			if i != "":
+				level.append(i)
+			else:
+				levels.append([level, nome])
+				level = []
+				f = False
+	levels.append([level, nome])
+	return levels
 
-if isinstance(b, Platform):
-	print("3")
-	
-if isinstance(b, ExitBlock):
-	print("4")
 
-#	teste :D
+fases = loadLevels("fase1.txt")
+for i in fases:
+	for j in i[0]:
+		print(j)
+

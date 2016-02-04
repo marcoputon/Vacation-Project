@@ -1,0 +1,122 @@
+#	P = Pedra
+#	T = Terra
+#	I = Pedra Invisivel
+#	F = Folha
+#	M = Madeira
+#	E = ExitBlock
+#	G = Grama
+#	J = Jogador
+#	
+
+
+nome: Level 1
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+P                                                              P
+P                                                              P
+P                                 I     I        I         I   P
+P                             I                        I       P
+P                                                              P
+P                                                              P
+P              I                    P        P                 P
+P                         P                                    P
+P                                                P     P    PP P
+P                                      I                     P P
+P                 P                                          P P
+P                              P                             P P
+P                                                            P P
+P                       P                                    P P
+P                                                            P P
+P      IIIII   PPPPP                                         P P
+PJ     IIIII   PPPPP                                         P P
+P      IIIII   PPPPP                                         P P
+PGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGEP
+PTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+
+nome: Level 2
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                            P
+P                             J      ETTTTTTTTTTTTTTTTTTTTTTTTTTT         T         T         T         T        T           P
+P                                                                                                                            P
+P                                                                                                                           TP
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                          T P
+P                                                                                                                            P
+P                                                                                                                            P
+P                                                                                                                        T   P
+P                                                                                                                            P
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+
+nome: Level 3
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+P                                                              P
+P                                                              P
+P                                                              P
+P                                                              P
+P                                            P                 P
+P                                                              P
+P                                   P                          P
+P                         P                                    P
+P                                                P          PP P
+P                                                            P P
+P                 P                                          P P
+P                              P                             P P
+P                                                            P P
+P                       P                                    P P
+P                                                            P P
+P                                                            P P
+P                                                            PEP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+
+nome: Level 4
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PJ                                                             P
+P                                                              P
+P                                                              P
+P                                                              P
+P                                            P                 P
+P                                                              P
+P                                     P                        P
+P                         P                                    P
+P                                                P          PP P
+P                                                            P P
+P                 P                                          P P
+P                              P                             P P
+PEPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+
+nome: Level 5 (SLOW)
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+P                                                              P
+P                                                              P
+P                                                              P
+P                                                              P
+PJ                                                             P
+P                                                              P
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPEP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPEP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP

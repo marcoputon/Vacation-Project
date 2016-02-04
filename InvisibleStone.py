@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 
 import pygame
 from pygame import *
@@ -12,8 +12,6 @@ class InvisibleStone(Platform):
 		self.colidindo = False
 		
 	def draw(self, screen, camera):
-		
-		
 		if self.colidindo:
 			pass
 		else:

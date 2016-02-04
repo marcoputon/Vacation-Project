@@ -1,11 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 
 import pygame
 from pygame import *
 from Entity import *
 from ExitBlock import *
 from InvisibleStone import *
-
+from Exceptions import *
 
 class Player(Entity):
 	def __init__(self, x, y):
@@ -20,21 +20,21 @@ class Player(Entity):
 
 	def update(self, up, down, left, right, running, platforms):
 		if up:
-			if self.onGround: self.yvel -= 15
+			if self.onGround: self.yvel -= 23
 		elif not self.onGround and self.yvel < 0:
-			self.yvel += 0.6
+			self.yvel += 1.6
 		
 		if down:
 			pass
 		if running:
-			self.xvel = 12
+			self.xvel = 20
 		if left:
-			self.xvel = -8
+			self.xvel = -15
 		if right:
-			self.xvel = 8
+			self.xvel = 15
 		if not self.onGround:
-			self.yvel += 0.6
-			if self.yvel > 90: self.yvel = 90
+			self.yvel += 1.6
+			if self.yvel > 270: self.yvel = 270
 		if not(left or right):
 			self.xvel = 0
 		
@@ -46,11 +46,7 @@ class Player(Entity):
 
 	def collide(self, xvel, yvel, platforms):
 		for p in platforms:
-			if pygame.sprite.collide_rect(self, p):
-				if isinstance(p, ExitBlock):
-					pygame.event.post(pygame.event.Event(QUIT))
-					print("Voce achou a saida!\n")
-				
+			if pygame.sprite.collide_rect(self, p):				
 				if isinstance(p, InvisibleStone):
 					p.colidindo = True
 					if self.rect.y + self.rect.h-1 == p.rect.y:
@@ -68,3 +64,6 @@ class Player(Entity):
 				if yvel < 0:
 					self.rect.top = p.rect.bottom
 					self.yvel = 0
+				
+				if isinstance(p, ExitBlock):
+					raise CompleteLevel()

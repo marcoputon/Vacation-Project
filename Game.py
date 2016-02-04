@@ -1,12 +1,13 @@
-#! /usr/bin/python
+#!/usr/bin/python3
 
-import pygame
 from pygame import *
 from Player import *
 from Entity import *
 from ExitBlock import *
 from Platform import *
 from InvisibleStone import *
+from Menu import *
+from Exceptions import *
 
 pygame.display.init()
 window = pygame.display.Info()
@@ -37,102 +38,311 @@ def main():
 	platforms = []
 
 	x = y = 0
-	level = [
-		"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",
-		"P       IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIP",
-		"P       IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIP",
-		"P       PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPIP",
-		"P       PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPIP",
-		"P                                                              P",
-		"P                                                              P",
-		"P                                                              P",
-		"P    IIPPPPPP                                                  P",
-		"P                                                              P",
-		"P                IIIPPPPPPP                                    P",
-		"P          PPPP                                                P",
-		"P                                             PPPPPP           P",
-		"P                                                              P",
-		"P                  IIPPPPPPI                                   P",
-		"P                                                    FFFF      P",
-		"P                                    IIIII         FFFFFFFF    P",
-		"P   PPPPPPPPPPP                                    FFFFFFFFF   P",
-		"P                                                   FFFFFFF    P",
-		"P                 PPPPPPPPPPP                          M       P",
-		"P       IIIIII                                         M       P",
-		"P       IIIIII                                         M       P",
-		"P       IIIIII                                         M       P",
-		"PGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG P",
-		"PTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT P",
-		"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPEP",]
-	# build the level
-	for row in level:
-		for col in row:
-			if col == "E":
-				e = ExitBlock(x, y)
-				platforms.append(e)
-				entities.add(e)
-			elif col == "I":
-				e = InvisibleStone(x, y, col)
-				platforms.append(e)
-				entities.add(e)
-			
-			elif not (col == " ") :
-				p = Platform(x, y, col)
-				platforms.append(p)
-				entities.add(p)
-			x += 32
-		y += 32
-		x = 0
-
-	total_level_width  = len(level[0])*32
-	total_level_height = len(level)*32
-	camera = Camera(complex_camera, total_level_width, total_level_height)
-	entities.add(player)
-
-	while 1:
-		timer.tick(60)
-
-		for e in pygame.event.get():
-			if e.type == QUIT: 
-				raise SystemExit
-			if e.type == KEYDOWN and e.key == K_ESCAPE:
-				raise SystemExit
-			if e.type == KEYDOWN and e.key == K_UP:
-				up = True
-			if e.type == KEYDOWN and e.key == K_DOWN:
-				down = True
-			if e.type == KEYDOWN and e.key == K_LEFT:
-				left = True
-			if e.type == KEYDOWN and e.key == K_RIGHT:
-				right = True
-			if e.type == KEYDOWN and e.key == K_SPACE:
-				running = True
-
-			if e.type == KEYUP and e.key == K_UP:
-				up = False
-			if e.type == KEYUP and e.key == K_DOWN:
-				down = False
-			if e.type == KEYUP and e.key == K_RIGHT:
-				right = False
-			if e.type == KEYUP and e.key == K_LEFT:
-				left = False
-
-		# draw background
-		for y in range(int(WIN_HEIGHT/32)):
-			for x in range(int(WIN_WIDTH/32)):
-				screen.blit(bg, (x * 32, y * 32))
-
-		camera.update(player)
-
-		# update player, draw everything else
-		player.update(up, down, left, right, running, platforms)
-		for e in entities:
-			if isinstance(e, Platform):
-				e.draw(screen, camera.apply(e))
-			else:
-				screen.blit(e.image, camera.apply(e))
-
+	
+	#	Menu 1
+	lt = []
+	lt.append(menuItem(100, 100, 200, 50, "Jogar", 22, (255, 255, 255)))
+	lt.append(menuItem(100, 100, 200, 50, "Tutorial", 22, (255, 255, 255)))
+	lt.append(menuItem(100, 100, 200, 50, "Sair", 22, (255, 255, 255)))
+	m = menu(lt, (30, 100), 20)
+	op = 0
+	
+	fases = loadLevels("fases.txt")
+	
+	#	Menu 2
+	lt = []
+	for i in fases:
+		lt.append(menuItem(100, 100, 200, 50, i[1], 22, (255, 255, 255)))
+	m2 = menu(lt, (30, 100), 20)
+	op2 = 0
+	
+	
+	while True:
+		for event in pygame.event.get():
+			if event.type == QUIT:
+				return
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_ESCAPE:
+					return
+				
+				if event.key == pygame.K_DOWN:
+					m.selected += 1
+					if m.selected > len(m.itens):
+						m.selected = 1
+				
+				if event.key == pygame.K_UP:
+					m.selected -= 1
+					if m.selected < 1:
+						m.selected = len(m.itens)
+				
+				if event.key == pygame.K_RETURN:
+					if m.selected == len(m.itens):
+						return
+					op = m.selected
+		
+		screen.fill(Color("#8888ff"))
+		m.draw(screen)
 		pygame.display.update()
+	
+		while op == 1:
+			while op == 1:
+				for event in pygame.event.get():
+					if event.type == QUIT:
+						return
+					if event.type == pygame.KEYDOWN:
+						if event.key == pygame.K_ESCAPE:
+							op = 0
+						
+						if event.key == pygame.K_DOWN:
+							m2.selected += 1
+							if m2.selected > len(m2.itens):
+								m2.selected = 1
+						
+						if event.key == pygame.K_UP:
+							m2.selected -= 1
+							if m2.selected < 1:
+								m2.selected = len(m2.itens)
+						
+						if event.key == pygame.K_RETURN:
+							op2 = m2.selected
+				
+				screen.fill(Color("#8888ff"))
+				m2.draw(screen)
+				pygame.display.update()
+				
+				if op2:
+					c = 1
+					for i in fases:
+						if c == op2:
+							level = i[0]
+						c += 1
+					
+					x = 0
+					y = 0
+					# build the level
+					for row in level:
+						for col in row:
+							if col == "J":
+								player.rect.left = x
+								player.rect.top = y
+							
+							elif col == "E":
+								e = ExitBlock(x, y)
+								platforms.append(e)
+								entities.add(e)
+							elif col == "I":
+								e = InvisibleStone(x, y, col)
+								platforms.append(e)
+								entities.add(e)
+							
+							elif not (col == " ") :
+								p = Platform(x, y, col)
+								platforms.append(p)
+								entities.add(p)
+							x += 32
+						y += 32
+						x = 0
+
+					total_level_width  = len(level[0])*32
+					total_level_height = len(level)*32
+					camera = Camera(complex_camera, total_level_width, total_level_height)
+					entities.add(player)
+					
+					jogando = True
+					fase = zera = False
+					while jogando:
+						timer.tick(30)
+
+						for e in pygame.event.get():
+							if e.type == QUIT: 
+								raise SystemExit
+							if e.type == KEYDOWN and e.key == K_ESCAPE:
+								zera = True
+								break
+								
+							if e.type == KEYDOWN and e.key == K_UP:
+								up = True
+							if e.type == KEYDOWN and e.key == K_DOWN:
+								down = True
+							if e.type == KEYDOWN and e.key == K_LEFT:
+								left = True
+							if e.type == KEYDOWN and e.key == K_RIGHT:
+								right = True
+							if e.type == KEYDOWN and e.key == K_SPACE:
+								running = True
+
+							if e.type == KEYUP and e.key == K_UP:
+								up = False
+							if e.type == KEYUP and e.key == K_DOWN:
+								down = False
+							if e.type == KEYUP and e.key == K_RIGHT:
+								right = False
+							if e.type == KEYUP and e.key == K_LEFT:
+								left = False
+
+						# draw background
+						for y in range(int(WIN_HEIGHT/32)):
+							for x in range(int(WIN_WIDTH/32)):
+								screen.blit(bg, (x * 32, y * 32))
+						
+						camera.update(player)
+						
+						# update player, draw everything else, end level
+						try:
+							player.update(up, down, left, right, running, platforms)
+						except CompleteLevel as cl:
+							fase = True
+						
+						for e in entities:
+							if isinstance(e, Platform):
+								e.draw(screen, camera.apply(e))
+							else:
+								screen.blit(e.image, camera.apply(e))
+
+						pygame.display.update()
+						
+						if fase:
+							pygame.draw.rect(screen, (0, 0, 0), Rect(HALF_WIDTH/2, HALF_HEIGHT/2, HALF_WIDTH, HALF_HEIGHT))
+							font = pygame.font.Font(None, 40)
+							text = font.render("Fase concluida", 1, (255, 255, 255))
+							textpos = (HALF_WIDTH/2 + 50, HALF_HEIGHT/2 + 50)
+							screen.blit(text, textpos)
+							font = pygame.font.Font(None, 24)
+							text = font.render("Pressione qualquer tecla para continuar", 1, (255, 255, 255))
+							textpos = (HALF_WIDTH/2 + 50, HALF_HEIGHT/2 + 120)
+							screen.blit(text, textpos)
+							pygame.display.update()
+							
+							continuar = False
+							while not continuar:
+								for e in pygame.event.get():
+									if e.type == KEYDOWN: 
+										continuar = True
+										zera = True				
+						if zera:			
+							jogando = False
+							op2 = 0
+							up = down = left = right = running = False
+							entities = pygame.sprite.Group()
+							player = Player(32, 32)
+							platforms = []
+							break
+							
+		while op == 2:
+			while op == 2:
+				level = loadLevels("Tutorial.txt")[0][0]
+				x = 0
+				y = 0
+				# build the level
+				for row in level:
+					for col in row:
+						if col == "J":
+							player.rect.left = x
+							player.rect.top = y
+						
+						elif col == "E":
+							e = ExitBlock(x, y)
+							platforms.append(e)
+							entities.add(e)
+						elif col == "I":
+							e = InvisibleStone(x, y, col)
+							platforms.append(e)
+							entities.add(e)
+						
+						elif not (col == " ") :
+							p = Platform(x, y, col)
+							platforms.append(p)
+							entities.add(p)
+						x += 32
+					y += 32
+					x = 0
+
+				total_level_width  = len(level[0])*32
+				total_level_height = len(level)*32
+				camera = Camera(complex_camera, total_level_width, total_level_height)
+				entities.add(player)
+				
+				jogando = True
+				fase = zera = False
+				while jogando:
+					timer.tick(30)
+
+					for e in pygame.event.get():
+						if e.type == QUIT: 
+							raise SystemExit
+						if e.type == KEYDOWN and e.key == K_ESCAPE:
+							zera = True
+							break
+							
+						if e.type == KEYDOWN and e.key == K_UP:
+							up = True
+						if e.type == KEYDOWN and e.key == K_DOWN:
+							down = True
+						if e.type == KEYDOWN and e.key == K_LEFT:
+							left = True
+						if e.type == KEYDOWN and e.key == K_RIGHT:
+							right = True
+						if e.type == KEYDOWN and e.key == K_SPACE:
+							running = True
+
+						if e.type == KEYUP and e.key == K_UP:
+							up = False
+						if e.type == KEYUP and e.key == K_DOWN:
+							down = False
+						if e.type == KEYUP and e.key == K_RIGHT:
+							right = False
+						if e.type == KEYUP and e.key == K_LEFT:
+							left = False
+
+					# draw background
+					for y in range(int(WIN_HEIGHT/32)):
+						for x in range(int(WIN_WIDTH/32)):
+							screen.blit(bg, (x * 32, y * 32))
+					
+					camera.update(player)
+					
+					# update player, draw everything else, end level
+					try:
+						player.update(up, down, left, right, running, platforms)
+					except CompleteLevel as cl:
+						fase = True
+					
+					for e in entities:
+						if isinstance(e, Platform):
+							e.draw(screen, camera.apply(e))
+						else:
+							screen.blit(e.image, camera.apply(e))
+
+					pygame.display.update()
+					
+					if fase:
+						pygame.draw.rect(screen, (0, 0, 0), Rect(HALF_WIDTH/2, HALF_HEIGHT/2, HALF_WIDTH, HALF_HEIGHT))
+						font = pygame.font.Font(None, 40)
+						text = font.render("Fase concluida", 1, (255, 255, 255))
+						textpos = (HALF_WIDTH/2 + 50, HALF_HEIGHT/2 + 50)
+						screen.blit(text, textpos)
+						font = pygame.font.Font(None, 24)
+						text = font.render("Pressione qualquer tecla para continuar", 1, (255, 255, 255))
+						textpos = (HALF_WIDTH/2 + 50, HALF_HEIGHT/2 + 120)
+						screen.blit(text, textpos)
+						pygame.display.update()
+						
+						continuar = False
+						while not continuar:
+							for e in pygame.event.get():
+								if e.type == KEYDOWN: 
+									continuar = True
+									zera = True
+					
+					if zera:			
+						jogando = False
+						op = 0
+						up = down = left = right = running = False
+						entities = pygame.sprite.Group()
+						player = Player(32, 32)
+						platforms = []
+						break
+	
 
 class Camera(object):
 	def __init__(self, camera_func, width, height):
@@ -160,7 +370,31 @@ def complex_camera(camera, target_rect):
 	t = max(-(camera.height-WIN_HEIGHT), t) # stop scrolling at the bottom
 	t = min(0, t)                           # stop scrolling at the top
 	return Rect(l, t, w, h)
-
+	
+def loadLevels(arquivo):
+	levels = []
+	level = []
+	arquivo = open(arquivo, "r")
+	fases = arquivo.readlines()
+	f = False
+	nome = ""
+	for i in fases:
+		if i[0] == '#':
+			continue
+		if "nome" in i:
+			nome = i[6:len(i)-1]
+			f = True
+			continue
+		if	f:
+			i = i[0:len(i)-1]
+			if i != "":
+				level.append(i)
+			else:
+				levels.append([level, nome])
+				level = []
+				f = False
+	levels.append([level, nome])
+	return levels
 
 if __name__ == "__main__":
 	main()
