@@ -1,20 +1,20 @@
 nome: Level 2
-                                                PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-                                                P                                                                            P
-                                                P                                                        FFFFFF              P
-                                                P                                                      FFFFFFFFFFFF          P
-                                                P                                                    FFFFFFFFFFFFFFF         P
-                                                P                                                    FFFFFFFFFFFFFF          P
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP                                                     FFFFFFFFFFFFF          P
-P                                               P                                                      FFFFFFFFFFF           P
-P                                               P                                             J             M                P
-P                                               P                                                           M                P
-P                                               P                                                           M                P
-P                                               P                                                           M                P
-P                               GGGGGPPPPPPPPIIIPIIIPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP             M                P
-P                               TTTTT               PI                                                      M                P
-P                               TTTTT               PI                                                      ME               P
-PGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTTTTTGGGGGGGGGGGGGGGPIGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGIIP
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIP
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIP
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+                                                                         PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+                                                                         P                                                                            P
+                                                                         P                                                        FFFFFF              P
+                                                                         P                                                      FFFFFFFFFFFF          P
+                                                                         P                                                    FFFFFFFFFFFFFFF         P
+                                                                         P                                                    FFFFFFFFFFFFFF          P
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP                                                     FFFFFFFFFFFFF          P
+P                                                                        P                                                      FFFFFFFFFFF           P
+P                                                                        P                                                           M                P
+P     ^                                         -                        P                                                           M                P
+P    [v]                                       <v>                       P                                                           M                P
+P                                                                        P                                                           M                P
+P                                                        GGGGGPPPPPPPPIIIPIIIPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP             M                P
+PJ                                                       TTTTT               PI                                                      M                P
+P                                                        TTTTT               PI                                                      ME               P
+PGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTTTTTGGGGGGGGGGGGGGGPIGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGIIP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIP
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP

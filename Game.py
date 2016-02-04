@@ -8,6 +8,7 @@ from Platform import *
 from InvisibleStone import *
 from Menu import *
 from Exceptions import *
+from Seta import *
 
 pygame.display.init()
 window = pygame.display.Info()
@@ -134,6 +135,19 @@ def main():
 								e = InvisibleStone(x, y, col)
 								platforms.append(e)
 								entities.add(e)
+							elif col in "<>^v[]-_":
+								if col in "<>^v": move = False
+								else: move = True
+								
+								if col in "<[":
+									e = Seta(x, y, "left", move)
+								elif col in ">]":
+									e = Seta(x, y, "right", move)
+								if col in "^-":
+									e = Seta(x, y, "up", move)
+								if col in "v_":
+									e = Seta(x, y, "down", move)
+								entities.add(e)
 							
 							elif not (col == " ") :
 								p = Platform(x, y, col)
@@ -194,6 +208,8 @@ def main():
 							fase = True
 						
 						for e in entities:
+							if isinstance(e, Seta):
+								e.update()
 							if isinstance(e, Platform):
 								e.draw(screen, camera.apply(e))
 							else:
@@ -248,7 +264,19 @@ def main():
 							e = InvisibleStone(x, y, col)
 							platforms.append(e)
 							entities.add(e)
-						
+						elif col in "<>^v[]-_":
+								if col in "<>^v": move = False
+								else: move = True
+								
+								if col in "<[":
+									e = Seta(x, y, "left", move)
+								elif col in ">]":
+									e = Seta(x, y, "right", move)
+								if col in "^-":
+									e = Seta(x, y, "up", move)
+								if col in "v_":
+									e = Seta(x, y, "down", move)
+								entities.add(e)						
 						elif not (col == " ") :
 							p = Platform(x, y, col)
 							platforms.append(p)
@@ -308,6 +336,8 @@ def main():
 						fase = True
 					
 					for e in entities:
+						if isinstance(e, Seta):
+							e.update()
 						if isinstance(e, Platform):
 							e.draw(screen, camera.apply(e))
 						else:

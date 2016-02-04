@@ -17,7 +17,7 @@ class Player(Entity):
 		self.image.fill(Color("#0000FF"))
 		self.image.convert()
 		self.rect = Rect(x, y, 32, 64)
-
+	
 	def update(self, up, down, left, right, running, platforms):
 		if up:
 			if self.onGround: self.yvel -= 23
