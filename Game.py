@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+import os
 
 from pygame import *
 from Player import *
@@ -37,9 +37,8 @@ def main():
 	entities = pygame.sprite.Group()
 	player = Player(32, 32)
 	platforms = []
-
 	x = y = 0
-	
+
 	#	Menu 1
 	lt = []
 	lt.append(menuItem(100, 100, 200, 50, "Jogar", 22, (255, 255, 255)))
@@ -47,17 +46,15 @@ def main():
 	lt.append(menuItem(100, 100, 200, 50, "Sair", 22, (255, 255, 255)))
 	m = menu(lt, (30, 100), 20)
 	op = 0
-	
-	fases = loadLevels("fases.txt")
-	
+	fases = loadLevels2()
+
 	#	Menu 2
 	lt = []
 	for i in fases:
 		lt.append(menuItem(100, 100, 200, 50, i[1], 22, (255, 255, 255)))
 	m2 = menu(lt, (30, 100), 20)
 	op2 = 0
-	
-	
+
 	while True:
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -65,26 +62,26 @@ def main():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_ESCAPE:
 					return
-				
+
 				if event.key == pygame.K_DOWN:
 					m.selected += 1
 					if m.selected > len(m.itens):
 						m.selected = 1
-				
+
 				if event.key == pygame.K_UP:
 					m.selected -= 1
 					if m.selected < 1:
 						m.selected = len(m.itens)
-				
+
 				if event.key == pygame.K_RETURN:
 					if m.selected == len(m.itens):
 						return
 					op = m.selected
-		
+
 		screen.fill(Color("#8888ff"))
 		m.draw(screen)
 		pygame.display.update()
-	
+
 		while op == 1:
 			while op == 1:
 				for event in pygame.event.get():
@@ -93,31 +90,31 @@ def main():
 					if event.type == pygame.KEYDOWN:
 						if event.key == pygame.K_ESCAPE:
 							op = 0
-						
+
 						if event.key == pygame.K_DOWN:
 							m2.selected += 1
 							if m2.selected > len(m2.itens):
 								m2.selected = 1
-						
+
 						if event.key == pygame.K_UP:
 							m2.selected -= 1
 							if m2.selected < 1:
 								m2.selected = len(m2.itens)
-						
+
 						if event.key == pygame.K_RETURN:
 							op2 = m2.selected
-				
+
 				screen.fill(Color("#8888ff"))
 				m2.draw(screen)
 				pygame.display.update()
-				
+
 				if op2:
 					c = 1
 					for i in fases:
 						if c == op2:
 							level = i[0]
 						c += 1
-					
+
 					x = 0
 					y = 0
 					# build the level
@@ -126,7 +123,7 @@ def main():
 							if col == "J":
 								player.rect.left = x
 								player.rect.top = y
-							
+
 							elif col == "E":
 								e = ExitBlock(x, y)
 								platforms.append(e)
@@ -138,7 +135,7 @@ def main():
 							elif col in "<>^v[]-_":
 								if col in "<>^v": move = False
 								else: move = True
-								
+
 								if col in "<[":
 									e = Seta(x, y, "left", move)
 								elif col in ">]":
@@ -148,7 +145,7 @@ def main():
 								if col in "v_":
 									e = Seta(x, y, "down", move)
 								entities.add(e)
-							
+
 							elif not (col == " ") :
 								p = Platform(x, y, col)
 								platforms.append(p)
@@ -161,19 +158,19 @@ def main():
 					total_level_height = len(level)*32
 					camera = Camera(complex_camera, total_level_width, total_level_height)
 					entities.add(player)
-					
+
 					jogando = True
 					fase = zera = False
 					while jogando:
 						timer.tick(30)
 
 						for e in pygame.event.get():
-							if e.type == QUIT: 
+							if e.type == QUIT:
 								raise SystemExit
 							if e.type == KEYDOWN and e.key == K_ESCAPE:
 								zera = True
 								break
-								
+
 							if e.type == KEYDOWN and e.key == K_UP:
 								up = True
 							if e.type == KEYDOWN and e.key == K_DOWN:
@@ -198,15 +195,15 @@ def main():
 						for y in range(int(WIN_HEIGHT/32)):
 							for x in range(int(WIN_WIDTH/32)):
 								screen.blit(bg, (x * 32, y * 32))
-						
+
 						camera.update(player)
-						
+
 						# update player, draw everything else, end level
 						try:
 							player.update(up, down, left, right, running, platforms)
 						except CompleteLevel as cl:
 							fase = True
-						
+
 						for e in entities:
 							if isinstance(e, Seta):
 								e.update()
@@ -214,12 +211,12 @@ def main():
 								e.draw(screen, camera.apply(e))
 							else:
 								screen.blit(e.image, camera.apply(e))
-						
+
 						#	Manter o player "por cima"
 						screen.blit(player.image, camera.apply(player))
-						
+
 						pygame.display.update()
-						
+
 						if fase:
 							pygame.draw.rect(screen, (0, 0, 0), Rect(HALF_WIDTH/2, HALF_HEIGHT/2, HALF_WIDTH, HALF_HEIGHT))
 							font = pygame.font.Font(None, 40)
@@ -231,14 +228,14 @@ def main():
 							textpos = (HALF_WIDTH/2 + 50, HALF_HEIGHT/2 + 120)
 							screen.blit(text, textpos)
 							pygame.display.update()
-							
+
 							continuar = False
 							while not continuar:
 								for e in pygame.event.get():
-									if e.type == KEYDOWN: 
+									if e.type == KEYDOWN:
 										continuar = True
-										zera = True				
-						if zera:			
+										zera = True
+						if zera:
 							jogando = False
 							op2 = 0
 							up = down = left = right = running = False
@@ -247,7 +244,7 @@ def main():
 							platforms = []
 							break
 
-		#	Loop do tutorial	
+		#	Loop do tutorial
 		while op == 2:
 			while op == 2:
 				level = loadLevels("Tutorial.txt")[0][0]
@@ -259,19 +256,21 @@ def main():
 						if col == "J":
 							player.rect.left = x
 							player.rect.top = y
-						
+
 						elif col == "E":
 							e = ExitBlock(x, y)
 							platforms.append(e)
 							entities.add(e)
+
 						elif col == "I":
 							e = InvisibleStone(x, y, col)
 							platforms.append(e)
 							entities.add(e)
+
 						elif col in "<>^v[]-_":
 								if col in "<>^v": move = False
 								else: move = True
-								
+
 								if col in "<[":
 									e = Seta(x, y, "left", move)
 								elif col in ">]":
@@ -280,7 +279,8 @@ def main():
 									e = Seta(x, y, "up", move)
 								if col in "v_":
 									e = Seta(x, y, "down", move)
-								entities.add(e)						
+								entities.add(e)
+
 						elif not (col == " ") :
 							p = Platform(x, y, col)
 							platforms.append(p)
@@ -293,25 +293,25 @@ def main():
 				total_level_height = len(level)*32
 				camera = Camera(complex_camera, total_level_width, total_level_height)
 				entities.add(player)
-				
+
 				jogando = True
 				fase = zera = False
-				
+
 				c1 = Platform(64, 256, "caixa1.png")
 				c2 = Platform(46*32, 256, "caixa2.png")
-				
+
 				while jogando:
 					timer.tick(30)
 					# (64, 256)
-					
-					
+
+
 					for e in pygame.event.get():
-						if e.type == QUIT: 
+						if e.type == QUIT:
 							raise SystemExit
 						if e.type == KEYDOWN and e.key == K_ESCAPE:
 							zera = True
 							break
-							
+
 						if e.type == KEYDOWN and e.key == K_UP:
 							up = True
 						if e.type == KEYDOWN and e.key == K_DOWN:
@@ -336,18 +336,18 @@ def main():
 					for y in range(int(WIN_HEIGHT/32)):
 						for x in range(int(WIN_WIDTH/32)):
 							screen.blit(bg, (x * 32, y * 32))
-					
+
 					camera.update(player)
-					
+
 					# update player, draw everything else, end level
 					try:
 						player.update(up, down, left, right, running, platforms)
 					except CompleteLevel as cl:
 						fase = True
-					
+
 					c1.draw(screen, camera.apply(c1))
-					c2.draw(screen, camera.apply(c2)) 
-					
+					c2.draw(screen, camera.apply(c2))
+
 					for e in entities:
 						if isinstance(e, Seta):
 							e.update()
@@ -356,10 +356,10 @@ def main():
 								e.draw(screen, camera.apply(e))
 						else:
 							screen.blit(e.image, camera.apply(e))
-							
+
 					screen.blit(player.image, camera.apply(player))
 					pygame.display.update()
-					
+
 					if fase:
 						pygame.draw.rect(screen, (0, 0, 0), Rect(HALF_WIDTH/2, HALF_HEIGHT/2, HALF_WIDTH, HALF_HEIGHT))
 						font = pygame.font.Font(None, 40)
@@ -371,15 +371,15 @@ def main():
 						textpos = (HALF_WIDTH/2 + 50, HALF_HEIGHT/2 + 120)
 						screen.blit(text, textpos)
 						pygame.display.update()
-						
+
 						continuar = False
 						while not continuar:
 							for e in pygame.event.get():
-								if e.type == KEYDOWN: 
+								if e.type == KEYDOWN:
 									continuar = True
 									zera = True
-					
-					if zera:			
+
+					if zera:
 						jogando = False
 						op = 0
 						up = down = left = right = running = False
@@ -387,7 +387,7 @@ def main():
 						player = Player(32, 32)
 						platforms = []
 						break
-	
+
 
 class Camera(object):
 	def __init__(self, camera_func, width, height):
@@ -415,7 +415,45 @@ def complex_camera(camera, target_rect):
 	t = max(-(camera.height-WIN_HEIGHT), t) # stop scrolling at the bottom
 	t = min(0, t)                           # stop scrolling at the top
 	return Rect(l, t, w, h)
-	
+
+def loadLevels2():
+	levels = []
+	files = os.popen("ls maps/")
+	for n in files:
+
+		level = []
+		mapa = pygame.image.load("maps/" + n[:len(n)-1])
+		tamanho = mapa.get_size()
+		linha = ""
+		fase = []
+		for j in range(tamanho[1])[2:]:
+			for i in range(tamanho[0]):
+				cor = mapa.get_at((i, j))
+				if cor == (95, 95, 95, 255):
+					linha += "P"
+				elif cor == (0, 0, 150, 255):
+					linha += "J"
+				elif cor == (120, 174, 212, 255):
+					linha += "E"
+				elif cor == (179, 80, 0, 255):
+					linha += "M"
+				elif cor == (0, 159, 7, 255):
+					linha += "G"
+				elif cor == (89, 195, 56, 255):
+					linha += "F"
+				elif cor == (159, 153, 148, 255):
+					linha += "I"
+				elif cor == (121, 54, 0, 255):
+					linha += "T"
+				else:
+					linha += " "
+
+			fase.append(linha)
+			linha = ""
+		levels.append([fase, n[:len(n)-5]])
+	return levels
+
+
 def loadLevels(arquivo):
 	levels = []
 	level = []
@@ -440,6 +478,7 @@ def loadLevels(arquivo):
 				f = False
 	levels.append([level, nome])
 	return levels
+
 
 if __name__ == "__main__":
 	main()
