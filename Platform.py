@@ -9,7 +9,7 @@ class Platform(Entity):
 	def __init__(self, x, y, t):
 		Entity.__init__(self)
 		if t == "E":
-			t = "Exit.jpg"
+			t = "Exit2.jpg"
 		elif t == "P":
 			t = "Pedra.jpg"
 		elif t == "T":
@@ -22,6 +22,8 @@ class Platform(Entity):
 			t = "Grama.jpg"
 		elif t == "I":
 			t = "Pedra.jpg"
+		else:
+			pass
 		
 		self.image = pygame.image.load("_Imagens/" + t)
 		self.rect = Rect(x, y, 32, 32)

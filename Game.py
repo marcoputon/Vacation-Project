@@ -214,7 +214,10 @@ def main():
 								e.draw(screen, camera.apply(e))
 							else:
 								screen.blit(e.image, camera.apply(e))
-
+						
+						#	Manter o player "por cima"
+						screen.blit(player.image, camera.apply(player))
+						
 						pygame.display.update()
 						
 						if fase:
@@ -243,7 +246,8 @@ def main():
 							player = Player(32, 32)
 							platforms = []
 							break
-							
+
+		#	Loop do tutorial	
 		while op == 2:
 			while op == 2:
 				level = loadLevels("Tutorial.txt")[0][0]
@@ -292,9 +296,15 @@ def main():
 				
 				jogando = True
 				fase = zera = False
+				
+				c1 = Platform(64, 256, "caixa1.png")
+				c2 = Platform(46*32, 256, "caixa2.png")
+				
 				while jogando:
 					timer.tick(30)
-
+					# (64, 256)
+					
+					
 					for e in pygame.event.get():
 						if e.type == QUIT: 
 							raise SystemExit
@@ -335,14 +345,19 @@ def main():
 					except CompleteLevel as cl:
 						fase = True
 					
+					c1.draw(screen, camera.apply(c1))
+					c2.draw(screen, camera.apply(c2)) 
+					
 					for e in entities:
 						if isinstance(e, Seta):
 							e.update()
 						if isinstance(e, Platform):
-							e.draw(screen, camera.apply(e))
+							if camera.apply(e).colliderect(Rect(0, 0, WIN_WIDTH, WIN_HEIGHT)):
+								e.draw(screen, camera.apply(e))
 						else:
 							screen.blit(e.image, camera.apply(e))
-
+							
+					screen.blit(player.image, camera.apply(player))
 					pygame.display.update()
 					
 					if fase:

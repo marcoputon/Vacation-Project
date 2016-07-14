@@ -8,8 +8,9 @@ nome: Level 2
 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP                                                     FFFFFFFFFFFFF          P
 P                                                                        P                                                      FFFFFFFFFFF           P
 P                                                                        P                                                           M                P
-P     ^                                         -                        P                                                           M                P
-P    [v]                                       <v>                       P                                                           M                P
+P                                               -                        P                                                           M                P
+P            ^                                 <v>                       P                                                           M                P
+P           [v]                                                          P                                                           M                P
 P                                                                        P                                                           M                P
 P                                                        GGGGGPPPPPPPPIIIPIIIPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP             M                P
 PJ                                                       TTTTT               PI                                                      M                P
